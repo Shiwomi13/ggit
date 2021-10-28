@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aleksandrov;
+using System;
 
-namespace ConsoleApp1
+namespace yo
 {
     class Program
     {
         static void Main(string[] args)
         {
-
             A a1 = new A();
             A a2 = new A();
 
@@ -25,6 +21,21 @@ namespace ConsoleApp1
             c1.a = a1;
             c1.b = b1;
 
+            try
+            {
+                Console.WriteLine("Введите параметры: ");
+                float a = Int32.Parse(Console.ReadLine());
+                float b = Int32.Parse(Console.ReadLine());
+                float c = Int32.Parse(Console.ReadLine());
+                Console.WriteLine($"Введено уравнение: {a}x^2 + {b}x + {c} = 0");
+                Kvad Yow = new Kvad();
+                AleksandrovLog.I().Log("Корни уравнения " + String.Join("; ", Yow.Solve(a, b, c)));
+            }
+            catch (AleksandrovException ex)
+            {
+                AleksandrovLog.I().Log(ex.Message);
+            }
+            AleksandrovLog.I().Write();
         }
     }
 
